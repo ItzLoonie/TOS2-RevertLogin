@@ -1,5 +1,6 @@
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // ReSharper disable InconsistentNaming
 
@@ -13,6 +14,11 @@ public class HomeBattlePassDetailsPanel_Patch
     private static void ValidateTiers_Postfix()
     {
         Mod.Logger.LogInfo("HomeBattlePassDetailsPanel.ValidateTiers called");
+
+        if (SceneManager.GetActiveScene().name != "HomeScene")
+        {
+            return;
+        }
 
         var obj = GameObject.Find("/HomeUI(Clone)/HomeScreenMainCanvas/SafeArea/HomeBattlePassView/BattlePassPrizeTrackDetails/DetailsPopup/Frame");
 

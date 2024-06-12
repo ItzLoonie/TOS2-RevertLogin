@@ -15,8 +15,6 @@ public class TosShopLeftButtons_Patch
     {
         var obj = GameObject.Find("/TosShopUI/Canvas/SafeArea/TosShopElementsUI/LeftSidePanel/ScalePanel/Tabs/LeftButtonPanel");
 
-        Mod.Logger.LogInfo($"defaultButton: {__instance.defaultButton.name}");
-
         if (!Settings.GetBool(Mod.Settings.Shop_BundlesSection))
         {
             obj.transform.Find("BundlesButton").gameObject.SetActive(false);
