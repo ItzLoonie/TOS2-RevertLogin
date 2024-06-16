@@ -103,6 +103,24 @@ public class Settings
         Available = ModSettings.GetBool(Home_Battlepass.Name)
     };
 
+    public ModSettings.CheckboxSetting Personalize_TomeOfFate => new()
+    {
+        Name = "Personalize › Tome of Fate",
+        Description = "Disable this setting to hide the Tome of Fate from the Personalize menu.",
+        DefaultValue = false,
+        AvailableInGame = false,
+        Available = true
+    };
+
+    public ModSettings.CheckboxSetting Personalize_TomeOfFateBoostSkip => new()
+    {
+        Name = "Personalize › Tome of Fate Boost/Skip",
+        Description = "Disable this setting to hide the Tome of Fate's Boost and Skip buttons.",
+        DefaultValue = false,
+        AvailableInGame = false,
+        Available = ModSettings.GetBool(Personalize_TomeOfFate.Name)
+    };
+
     public ModSettings.CheckboxSetting Cauldron_ImproveCauldron => new()
     {
         Name = "Cauldron › Improve Cauldron",

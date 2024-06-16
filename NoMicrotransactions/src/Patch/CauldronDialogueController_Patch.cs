@@ -25,14 +25,14 @@ public class CauldronDialogueController_Patch
 
         if (!Settings.GetBool(Mod.Settings.Cauldron_ImproveCauldron))
         {
-            GameObject.Find("/HUD/HD/CauldronSceneElementsUI/CauldronFeaturedItemPanel").gameObject.SetActive(false);
+            GameObject.Find("/HUD/HD/CauldronSceneElementsUI/CauldronFeaturedItemPanel").SetActive(false);
 
             Mod.Logger.LogInfo("Deactivated CauldronFeaturedItemPanel (CauldronScene)");
         }
 
         if (!Settings.GetBool(Mod.Settings.Cauldron_CauldronLevel))
         {
-            GameObject.Find("/HUD/HD/CauldronSceneElementsUI/CauldronLevelPanel").gameObject.SetActive(false);
+            GameObject.Find("/HUD/HD/CauldronSceneElementsUI/CauldronLevelPanel").SetActive(false);
 
             Mod.Logger.LogInfo("Deactivated CauldronLevelPanel (CauldronScene)");
         }
