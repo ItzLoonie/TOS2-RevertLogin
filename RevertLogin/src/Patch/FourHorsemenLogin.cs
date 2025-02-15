@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 namespace RevertLogin.Patch
 {
     [HarmonyPatch(typeof(SceneManager))]
-    [HarmonyPatch(nameof(SceneManager.LoadScene))]
     public class LoginScene_Patch
     {
+        // This will explicitly target the LoadScene method with the signature (string, LoadSceneMode)
+        [HarmonyPatch("LoadScene", new[] { typeof(string), typeof(LoadSceneMode) })]
         [HarmonyPostfix]
         private static void OnSceneLoad_Postfix(string sceneName, LoadSceneMode mode)
         {
