@@ -1,14 +1,16 @@
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace RevertLogin.Patch;
 
-[HarmonyPatch(typeof(SceneManager), nameof(SceneManager.LoadScene))]
+[HarmonyPatch(typeof(SceneManager))]
+[HarmonyPatch(nameof(SceneManager.LoadScene), new Type[] { typeof(string), typeof(LoadSceneMode) })]
 public class LoginScene_Patch
 {
     [HarmonyPostfix]
-    private static void OnSceneLoad_Postfix(string sceneName)
+    private static void OnSceneLoad_Postfix(string sceneName, LoadSceneMode mode)
     {
         if (sceneName != "LoginScene")
         {
