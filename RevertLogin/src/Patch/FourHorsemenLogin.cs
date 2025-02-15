@@ -1,24 +1,18 @@
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System;
-using System.Reflection;
 
 namespace RevertLogin.Patch
 {
-    [HarmonyPatch]
+    [HarmonyPatch(typeof(SceneManager))]
+    [HarmonyPatch(nameof(SceneManager.LoadScene))]
     public class LoginScene_Patch
     {
-        static MethodBase TargetMethod()
-        {
-            // Ensure correct overload is targeted
-            return AccessTools.Method(typeof(SceneManager), "LoadScene", new Type[] { typeof(string), typeof(LoadSceneMode) });
-        }
-
         [HarmonyPostfix]
         private static void OnSceneLoad_Postfix(string sceneName, LoadSceneMode mode)
         {
-            // Only modify if LoginScene is loaded
+            Mod.Logger.LogInfo($"Scene loaded: {sceneName}");
+
             if (sceneName != "LoginScene")
             {
                 return;
@@ -26,7 +20,8 @@ namespace RevertLogin.Patch
 
             Mod.Logger.LogInfo("LoginScene loaded, modifying UI...");
 
-            var s4LoginAssets = GameObject.Find("/Canvas/S4LoginAssets");
+            // Find the S4LoginAssets object inside Canvas and disable it
+            var s4LoginAssets = GameObject.Find("/LoginScene/Canvas/S4LoginAssets");
             if (s4LoginAssets != null)
             {
                 Mod.Logger.LogInfo("Disabling S4LoginAssets...");
@@ -37,7 +32,8 @@ namespace RevertLogin.Patch
                 Mod.Logger.LogWarning("S4LoginAssets not found!");
             }
 
-            var loginAssets = GameObject.Find("/LoginAssets");
+            // Find the LoginAssets object and enable it
+            var loginAssets = GameObject.Find("/LoginScene/LoginAssets");
             if (loginAssets != null)
             {
                 Mod.Logger.LogInfo("Enabling LoginAssets...");
