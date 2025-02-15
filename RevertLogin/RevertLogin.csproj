@@ -7,7 +7,7 @@
         <LangVersion>10.0</LangVersion>
 
         <SalemModLoaderUrl>https://github.com/Curtbot9000/SalemModLoader/releases/latest/download/SalemModLoader.dll</SalemModLoaderUrl>
-        <GameInstallPath>/home/dave/.local/share/Steam/steamapps/common/Town of Salem 2</GameInstallPath>
+        <GameInstallPath>C:/Users/popul/Desktop/Steam/steamapps/common/Town of Salem 2</GameInstallPath>
 <!--        <GameInstallPath>G:\SteamLibrary\steamapps\common\Town of Salem 2</GameInstallPath>-->
     </PropertyGroup>
 
