@@ -12,6 +12,9 @@ namespace RevertLogin.Patch
         [HarmonyPostfix]
         private static void OnSceneLoad_Postfix(string sceneName, LoadSceneMode mode)
         {
+            // Check if the patch is applied
+            Mod.Logger.LogInfo("LoginScene_Patch applied successfully.");
+
             Mod.Logger.LogInfo($"Scene loaded: {sceneName}");
 
             if (sceneName != "LoginScene")

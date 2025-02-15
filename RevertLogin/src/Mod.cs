@@ -1,19 +1,24 @@
 ﻿using BepInEx.Logging;
+using HarmonyLib;
 
-// ReSharper disable ClassNeverInstantiated.Global
-// ReSharper disable UnusedMember.Global
-
-namespace RevertLogin;
-
-[SML.Mod.SalemMod]
-public class Mod
+namespace RevertLogin
 {
-    internal static ManualLogSource Logger;
-
-    public static void Start()
+    [SML.Mod.SalemMod]
+    public class Mod
     {
-        Logger = BepInEx.Logging.Logger.CreateLogSource("RevertLogin");
+        internal static ManualLogSource Logger;
 
-        Logger.LogInfo("waga baba bobo");
+        public static Harmony harmony;
+
+        public static void Start()
+        {
+            Logger = BepInEx.Logging.Logger.CreateLogSource("RevertLogin");
+
+            Logger.LogInfo("waga baba bobo");
+
+            // Initialize Harmony
+            harmony = new Harmony("loons.loonie.tos2.revertlogin");
+            harmony.PatchAll();  // Ensure patches are applied when mod starts
+        }
     }
 }
