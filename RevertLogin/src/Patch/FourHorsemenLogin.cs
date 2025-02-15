@@ -7,7 +7,7 @@ namespace RevertLogin.Patch
     [HarmonyPatch(typeof(SceneManager))]
     public class LoginScene_Patch
     {
-        // This will explicitly target the LoadScene method with the signature (string, LoadSceneMode)
+        // Explicitly patch the LoadScene method with (string, LoadSceneMode)
         [HarmonyPatch("LoadScene", new[] { typeof(string), typeof(LoadSceneMode) })]
         [HarmonyPostfix]
         private static void OnSceneLoad_Postfix(string sceneName, LoadSceneMode mode)
@@ -25,7 +25,7 @@ namespace RevertLogin.Patch
             Mod.Logger.LogInfo("LoginScene loaded, modifying UI...");
 
             // Find the S4LoginAssets object inside Canvas and disable it
-            var s4LoginAssets = GameObject.Find("/LoginScene/Canvas/S4LoginAssets");
+            var s4LoginAssets = GameObject.Find("/Canvas/S4LoginAssets");
             if (s4LoginAssets != null)
             {
                 Mod.Logger.LogInfo("Disabling S4LoginAssets...");
@@ -37,7 +37,7 @@ namespace RevertLogin.Patch
             }
 
             // Find the LoginAssets object and enable it
-            var loginAssets = GameObject.Find("/LoginScene/LoginAssets");
+            var loginAssets = GameObject.Find("/Canvas/LoginAssets");
             if (loginAssets != null)
             {
                 Mod.Logger.LogInfo("Enabling LoginAssets...");
