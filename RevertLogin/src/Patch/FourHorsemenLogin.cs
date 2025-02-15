@@ -1,32 +1,22 @@
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace RevertLogin.Patch;
 
-[HarmonyPatch(typeof(SceneManager), nameof(SceneManager.LoadScene))]
+[HarmonyPatch(typeof(SceneManager), nameof(SceneManager.LoadScene), new Type[] { typeof(string), typeof(LoadSceneMode) })]
 public class LoginScene_Patch
 {
     [HarmonyPostfix]
-    private static void OnSceneLoad_Postfix(string sceneName)
+    private static void OnSceneLoad_Postfix(string sceneName, LoadSceneMode mode)
     {
         if (sceneName != "LoginScene")
         {
             return;
         }
 
-        Mod.Logger.LogInfo("LoginScene loaded, waiting for scene to finish loading...");
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (scene.name != "LoginScene")
-        {
-            return;
-        }
-
-        Mod.Logger.LogInfo("LoginScene fully loaded, modifying UI...");
+        Mod.Logger.LogInfo("LoginScene loaded, modifying UI...");
 
         var s4LoginAssets = GameObject.Find("LoginScene/Canvas/S4LoginAssets");
         if (s4LoginAssets != null)
@@ -49,8 +39,5 @@ public class LoginScene_Patch
         {
             Mod.Logger.LogWarning("LoginAssets not found!");
         }
-
-        // Unsubscribe after execution to avoid multiple calls
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
