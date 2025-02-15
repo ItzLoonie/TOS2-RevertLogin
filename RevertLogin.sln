@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoMicrotransactions", "NoMicrotransactions\NoMicrotransactions.csproj", "{3136555E-03BE-4E01-8094-37566F24BC2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevertLogin", "RevertLogin\RevertLogin.csproj", "{3136555E-03BE-4E01-8094-37566F24BC2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

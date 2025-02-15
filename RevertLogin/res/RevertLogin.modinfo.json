@@ -1,0 +1,16 @@
+{
+  "HarmonyId": "loons.loonie.tos2.revertlogin",
+  "DisplayName": "Revert Login",
+  "Authors": [
+    "Loonie"
+  ],
+  "Description": "Reverts the Login Screen to the one before Season 4, with the red background and silhouettes of the four horsemen in the background.",
+  "Version": "1.0.0",
+  "Platforms": [
+    "Windows",
+    "Mac"
+  ],
+  "RequiredMods": [],
+  "ConflictingMods": [],
+  "Settings": {}
+}

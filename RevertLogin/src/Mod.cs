@@ -3,7 +3,7 @@
 // ReSharper disable ClassNeverInstantiated.Global
 // ReSharper disable UnusedMember.Global
 
-namespace NoMicrotransactions;
+namespace RevertLogin;
 
 [SML.Mod.SalemMod]
 public class Mod
@@ -13,9 +13,9 @@ public class Mod
 
     public static void Start()
     {
-        Logger = BepInEx.Logging.Logger.CreateLogSource("NoMicrotransactions");
+        Logger = BepInEx.Logging.Logger.CreateLogSource("RevertLogin");
         Settings = new Settings();
 
-        Logger.LogInfo("Balls retain pee");
+        Logger.LogInfo("waga baba bobo");
     }
 }
