@@ -11,12 +11,14 @@ namespace RevertLogin.Patch
     {
         static MethodBase TargetMethod()
         {
-            return AccessTools.Method(typeof(SceneManager), nameof(SceneManager.LoadScene), new Type[] { typeof(string), typeof(LoadSceneMode) });
+            // Ensure correct overload is targeted
+            return AccessTools.Method(typeof(SceneManager), "LoadScene", new Type[] { typeof(string), typeof(LoadSceneMode) });
         }
 
         [HarmonyPostfix]
         private static void OnSceneLoad_Postfix(string sceneName, LoadSceneMode mode)
         {
+            // Only modify if LoginScene is loaded
             if (sceneName != "LoginScene")
             {
                 return;
@@ -35,7 +37,7 @@ namespace RevertLogin.Patch
                 Mod.Logger.LogWarning("S4LoginAssets not found!");
             }
 
-            var loginAssets = GameObject.Find("/Canvas/LoginAssets");
+            var loginAssets = GameObject.Find("/LoginAssets");
             if (loginAssets != null)
             {
                 Mod.Logger.LogInfo("Enabling LoginAssets...");
