@@ -7,7 +7,6 @@ namespace RevertLogin
     public class Mod
     {
         internal static ManualLogSource Logger;
-
         public static Harmony harmony;
 
         public static void Start()
@@ -17,8 +16,10 @@ namespace RevertLogin
             Logger.LogInfo("waga baba bobo");
 
             // Initialize Harmony
-            harmony = new Harmony("loons.loonie.tos2.revertlogin");
-            harmony.PatchAll();  // Ensure patches are applied when mod starts
+            harmony = new Harmony("loonie.tos.revertlogin");
+            harmony.PatchAll();  // Apply all patches
+
+            Logger.LogInfo("Harmony patches applied.");
         }
     }
 }
